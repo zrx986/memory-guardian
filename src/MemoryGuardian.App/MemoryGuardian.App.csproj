@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>MemoryGuardian</AssemblyName>
+    <AssemblyTitle>说的道理 · 内存助手</AssemblyTitle>
+    <Version>1.0.1</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishSingleFile>false</PublishSingleFile>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="../MemoryGuardian.Core/MemoryGuardian.Core.csproj" /></ItemGroup>
+  <ItemGroup><EmbeddedResource Include="Assets/Daoli.frames.png" LogicalName="MemoryGuardian.Daoli.frames.png" /></ItemGroup>
+</Project>

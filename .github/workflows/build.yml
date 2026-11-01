@@ -1,0 +1,35 @@
+name: Windows build and tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
+        with:
+          global-json-file: global.json
+      - name: Tests without native cleanup
+        shell: pwsh
+        run: ./build/Test.ps1
+      - name: Build self-contained package
+        shell: pwsh
+        run: ./build/Publish.ps1
+      - name: Upload package and results
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: MemoryGuardian-win-x64
+          path: |
+            output/MemoryGuardian-*-win-x64.zip
+            output/SHA256SUMS.txt
+            output/test-results/
+          retention-days: 14
